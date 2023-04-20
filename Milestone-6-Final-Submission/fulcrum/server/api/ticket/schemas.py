@@ -8,9 +8,6 @@ class ResponseInputSchema(Schema):
 class TicketInputSchema(ResponseInputSchema):
     subject = fields.Str(required=True, validate=Length(min=16))
 
-class TicketTagInputSchema(TicketInputSchema):
-    tag_list = fields.Str(required=True, validate=Length(min=3))
-
 class TicketSchema(mm.Schema):
     class Meta:
         fields = ('id', 'status', 'subject')
