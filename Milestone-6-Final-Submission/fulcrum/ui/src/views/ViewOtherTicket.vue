@@ -1,5 +1,5 @@
 <template>
-  <StudentNavBar />
+  <MainNavbar />
   <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-col text-center w-full mb-20">
@@ -45,10 +45,10 @@
 
 <script>
 import axios from "axios";
-import StudentNavBar from "@/components/StudentNavBar.vue";
+import MainNavbar from "@/components/MainNavbar.vue";
 export default {
   name: "DashboardView",
-  components: { StudentNavBar },
+  components: { MainNavbar },
   data() {
     return {
       ticket_data: null,

@@ -1,5 +1,5 @@
 <template>
-  <StudentNavBar></StudentNavBar>
+  <SupervisorNavBar />
   <div class="student_dashboard">
     <section class="text-gray-600 body-font">
       <div class="container px-5 py-24 mx-auto flex flex-col">
@@ -34,7 +34,7 @@
                   <strong>Email: </strong>{{ this.user_profile.email }}<br />
                   <strong>Roll no.: </strong>{{ this.user_profile.roll_number
                   }}<br />
-                  <strong>Account type.: </strong>Student<br />
+                  <strong>Account type.: </strong>Supervisor<br />
                 </p>
               </div>
             </div>
@@ -108,10 +108,10 @@
 
 <script>
 import axios from "axios";
-import StudentNavBar from "@/components/StudentNavBar.vue";
+import SupervisorNavBar from "@/components/SupervisorNavBar.vue";
 
 export default {
-  components: { StudentNavBar },
+  components: { SupervisorNavBar },
   name: "DashboardView",
   data() {
     return {
@@ -123,6 +123,25 @@ export default {
         password: "",
       },
     };
+  },
+  beforeCreate: async function () {
+    await axios
+      .get("http://localhost:8000/api/profile", {
+        headers: {
+          "Content-Type": "application/json",
+          "Authentication-token": localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        if (response.data.role_id != 1) {
+          this.$router.push("/dashboard");
+        }
+        this.user_profile = response.data;
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        this.$router.push("/dashboard");
+      });
   },
   methods: {
     profile_update: async function () {

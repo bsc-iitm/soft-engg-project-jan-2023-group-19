@@ -26,7 +26,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
   {
-    path: "/SignUp",
+    path: "/register",
     name: "SignUp",
     component: () =>
       import(/* webpackChunkName: "signup" */ "../views/RegisterView.vue"),
@@ -94,6 +94,14 @@ const routes = [
       ),
   },
   {
+    path: "/admin/profile",
+    name: "admin profile",
+    component: () =>
+      import(
+        /* webpackChunkName: "dashboard" */ "../views/Admin/AdminProfile.vue"
+      ),
+  },
+  {
     path: "/staff/dashboard",
     name: "staff dashboard",
     component: () =>
@@ -107,6 +115,30 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "dashboard" */ "../views/Supervisor/DashboardView.vue"
+      ),
+  },
+  {
+    path: "/supervisor/profile",
+    name: "supervisor profile",
+    component: () =>
+      import(
+        /* webpackChunkName: "dashboard" */ "../views/Supervisor/SupervisorProfile.vue"
+      ),
+  },
+  {
+    path: "/supervisor/ViewTicket/:id",
+    name: "student view ticket",
+    component: () =>
+      import(
+        /* webpackChunkName: "dashboard" */ "../views/Supervisor/ViewOtherTicket.vue"
+      ),
+  },
+  {
+    path: "/viewFAQ/:id",
+    name: "student view ticket",
+    component: () =>
+      import(
+        /* webpackChunkName: "dashboard" */ "../views/ViewOtherTicket.vue"
       ),
   },
   {

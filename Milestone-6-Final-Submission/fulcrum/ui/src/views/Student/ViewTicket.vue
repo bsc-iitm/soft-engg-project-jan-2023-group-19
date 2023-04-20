@@ -80,24 +80,6 @@ export default {
   beforeMount: [
     async function () {
       await axios
-        .get("http://localhost:8000/api/profile", {
-          headers: {
-            "Content-Type": "application/json",
-            "Authentication-token": localStorage.getItem("token"),
-          },
-        })
-        .then((response) => {
-          if (response.data.role_id != 3) {
-            this.$router.push("/dashboard");
-          }
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-          this.$router.push("/dashboard");
-        });
-    },
-    async function () {
-      await axios
         .get("http://localhost:8000/api/tickets/my/" + this.ticket_id, {
           headers: {
             "Content-Type": "application/json",

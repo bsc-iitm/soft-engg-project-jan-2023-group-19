@@ -4,11 +4,12 @@
       class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
     >
       <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
-        <a class="mr-5 hover:text-gray-900" href="/student/dashboard"
+        <a class="mr-5 hover:text-gray-900" href="/supervisor/dashboard"
           >Dashboard</a
         >
-        <a class="mr-5 hover:text-gray-900" href="/student/tickets">Tickets</a>
-        <a class="mr-5 hover:text-gray-900" href="/student/profile">Profile</a>
+        <a class="mr-5 hover:text-gray-900" href="/supervisor/profile"
+          >Profile</a
+        >
         <a class="hover:text-gray-900" href="/faq" target="_blank">FAQs</a>
       </nav>
       <a
@@ -57,28 +58,8 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
-  name: "StudentNavBar",
-  beforeCreate: async function () {
-    await axios
-      .get("http://localhost:8000/api/profile", {
-        headers: {
-          "Content-Type": "application/json",
-          "Authentication-token": localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        if (response.data.role_id != 3) {
-          this.$router.push("/dashboard");
-        }
-        this.user_profile = response.data;
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-        this.$router.push("/dashboard");
-      });
-  },
+  name: "SupervisorNavBar",
   methods: {
     logout: async function () {
       localStorage.removeItem("token");

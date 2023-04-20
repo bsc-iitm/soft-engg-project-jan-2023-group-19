@@ -7,7 +7,7 @@
         <a class="mr-5 hover:text-gray-900" href="/">Home</a>
         <a class="mr-5 hover:text-gray-900" href="/faq">FAQs</a>
         <a class="mr-5 hover:text-gray-900" href="/login">Login</a>
-        <a class="hover:text-gray-900" href="/signup">Register</a>
+        <a class="hover:text-gray-900" href="/register">Register</a>
       </nav>
       <a
         href="/"

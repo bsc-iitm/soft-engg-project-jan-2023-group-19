@@ -1,5 +1,5 @@
 <template>
-  <StudentNavBar />
+  <SupervisorNavBar />
   <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-col text-center w-full mb-20">
@@ -13,6 +13,16 @@
         >
           {{ ticket_data.subject }}
         </h1>
+        <div class="container mx-auto">
+          <div class="flex flex-col text-center w-full mb-12">
+            <button
+              @click="promote"
+              class="flex-shrink-0 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-10 sm:mt-0"
+            >
+              Promote
+            </button>
+          </div>
+        </div>
         <section class="text-gray-600 body-font overflow-hidden">
           <div class="container px-5 py-24 mx-auto">
             <div class="-my-8 divide-y-2 divide-gray-100">
@@ -45,10 +55,10 @@
 
 <script>
 import axios from "axios";
-import StudentNavBar from "@/components/StudentNavBar.vue";
+import SupervisorNavBar from "@/components/SupervisorNavBar.vue";
 export default {
   name: "DashboardView",
-  components: { StudentNavBar },
+  components: { SupervisorNavBar },
   data() {
     return {
       ticket_data: null,
@@ -73,5 +83,27 @@ export default {
         });
     },
   ],
+  methods: {
+    promote: async function () {
+      await axios
+        .put(
+          "http://localhost:8000/api/tickets/promote/" + this.ticket_id,
+          {},
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Authentication-token": localStorage.getItem("token"),
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+          this.$router.push("/supervisor/dashboard");
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+        });
+    },
+  },
 };
 </script>

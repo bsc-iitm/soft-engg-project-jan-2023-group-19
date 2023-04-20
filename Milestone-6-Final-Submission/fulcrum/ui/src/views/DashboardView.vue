@@ -33,7 +33,7 @@ export default {
     // Use Vue.js router to navigate to the corresponding dashboard
     switch (this.role) {
       case 0:
-        window.location.href = "http://localhost:8000/admin";
+        this.$router.push("/admin/dashboard");
         break;
       case 3:
         this.$router.push("/student/dashboard");
@@ -45,7 +45,7 @@ export default {
         this.$router.push("/supervisor/dashboard");
         break;
       default:
-        this.$router.push("/dashboard");
+        this.$router.push("/");
     }
   },
 };

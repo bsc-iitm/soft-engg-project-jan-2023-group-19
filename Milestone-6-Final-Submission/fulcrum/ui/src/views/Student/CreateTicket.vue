@@ -67,25 +67,6 @@ export default {
       message: "",
     };
   },
-  beforeCreate: async function () {
-    await axios
-      .get("http://localhost:8000/api/profile", {
-        headers: {
-          "Content-Type": "application/json",
-          "Authentication-token": localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        if (response.data.role_id != 3) {
-          this.$router.push("/dashboard");
-        }
-        this.user_profile = response.data;
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-        this.$router.push("/dashboard");
-      });
-  },
   methods: {
     createTicket() {
       axios
